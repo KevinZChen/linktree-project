@@ -28,8 +28,10 @@ app.get("/", function(req, res){
 
 app.post("/", function(req,res){
   let linkUrl= req.body.newUrl;
+  let linkName=req.body.newLinkName;
   //mongoose document
   const link = new Link ({
+    name:linkName,
     url: linkUrl
   });
   link.save()

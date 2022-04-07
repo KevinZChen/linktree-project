@@ -60,3 +60,10 @@ button {
     font-size: 30px;
     margin:0px
 }
+/* input:checked+a {
+    text-decoration: line-through;
+    text-decoration-color: #000;
+  } */
+input[type="checkbox"]{
+    margin-left:20px;
+}

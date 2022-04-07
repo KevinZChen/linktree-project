@@ -14,13 +14,20 @@
 <body>
 
     <div class="container-fluid">
+
         <% newLinkUrl.forEach(function(link){ %>
+        <form action="/delete" method="post">
         <a href=<%=link.url%>>
             <div class="link-box">
                 <%=link.name%>
+                <input type="checkbox" name="checkbox" value="<%=link._id%>" onChange="this.form.submit()">
             </div>
         </a>
+        </form>
         <%}) %>
+       
+
+
         <!-- <a href="https://www.facebook.com">
             <div class="link-box">
                 facebook

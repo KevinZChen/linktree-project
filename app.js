@@ -39,6 +39,17 @@ app.post("/", function(req,res){
   res.redirect("/")
 });
 
+app.post("/delete",function(req,res){
+  let checkedLinkId=req.body.checkbox;
+  console.log(req.body.checkbox)
+  Link.findByIdAndRemove(checkedLinkId,function(err){
+    if (!err){
+      console.log("Successfully deleted item")
+    res.redirect("/")
+    }
+  });
+})
+
 app.listen(3000, function(){
   console.log("Server started on port 3000.");
 });

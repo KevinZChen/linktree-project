@@ -40,8 +40,8 @@ app.post("/", function(req,res){
 });
 
 app.post("/delete",function(req,res){
-  let checkedLinkId=req.body.checkbox;
-  console.log(req.body.checkbox)
+  let checkedLinkId=req.body.trash;
+  console.log(req.body.trash)
   Link.findByIdAndRemove(checkedLinkId,function(err){
     if (!err){
       console.log("Successfully deleted item")

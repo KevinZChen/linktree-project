@@ -59,21 +59,28 @@ app.post("/delete",function(req,res){
 
 app.post("/edit",function(req,res){
   let newLinkName= req.body.newLinkName
+  let newLinkUrl=req.body.newLinkUrl
   let linkID=req.body.linkID
   console.log(req.body.linkID)
 
+  //update name
   Link.updateOne({_id:linkID},{name:newLinkName},function(err){
     if (err){
       console.log(err)
     }else{
       console.log("succesfully updated the document")
     }
-  })
+  });
+  // update url
+  Link.updateOne({_id:linkID},{url:newLinkUrl},function(err){
+    if (err){
+      console.log(err)
+    }else{
+      console.log("succesfully updated the document")
+    }
+  });
   res.redirect("/")
 });
-function appear(){
-  document.getElementById("edit").style.display="block";
-};
 
 app.listen(3000, function(){
   console.log("Server started on port 3000.");

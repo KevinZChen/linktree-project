@@ -44,7 +44,9 @@
 
 
         <form action="/edit" method="post" id="edit_form">
-            <input type="text" name="newLinkName" value="<%=link.name%>" placeholder="update name" autocomplete="off" id="edit">
+            <input type="text" name="newLinkName" value="<%=link.name%>" placeholder="update name" autocomplete="off">
+            <input type="text" name="newLinkUrl" value="<%=link.url%>" placeholder="update url" autocomplete="off">
+            <!-- button to add linkid value -->
             <button type="submit" name="linkID" value="<%=link._id%>" style="display:none;">+</button>
         </form>
         <button type="submit" name="edit" value="" class="btn" ><i class="fas fa-pencil-alt"></i></button>

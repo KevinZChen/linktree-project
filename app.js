@@ -2,7 +2,14 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose=require("mongoose")
 const app = express();
-
+// jquery
+var jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+const { window } = new JSDOM();
+const { document } = (new JSDOM('')).window;
+global.document = document;
+var $ = jQuery = require('jquery')(window);
+//
 app.set('view engine','ejs')
 
 app.use(bodyParser.urlencoded({extended:true}))
@@ -27,8 +34,8 @@ app.get("/", function(req, res){
   });
 
 app.post("/", function(req,res){
-  let linkUrl= req.body.newUrl;
-  let linkName=req.body.newLinkName;
+  let linkUrl= req.body.url;
+  let linkName=req.body.linkName;
   //mongoose document
   const link = new Link ({
     name:linkName,
@@ -48,7 +55,25 @@ app.post("/delete",function(req,res){
     res.redirect("/")
     }
   });
-})
+});
+
+app.post("/edit",function(req,res){
+  let newLinkName= req.body.newLinkName
+  let linkID=req.body.linkID
+  console.log(req.body.linkID)
+
+  Link.updateOne({_id:linkID},{name:newLinkName},function(err){
+    if (err){
+      console.log(err)
+    }else{
+      console.log("succesfully updated the document")
+    }
+  })
+  res.redirect("/")
+});
+function appear(){
+  document.getElementById("edit").style.display="block";
+};
 
 app.listen(3000, function(){
   console.log("Server started on port 3000.");

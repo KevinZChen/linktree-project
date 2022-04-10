@@ -15,6 +15,7 @@
 </head>
 <body>
 
+
     <div class="container-fluid">
 
         <% newLinkUrl.forEach(function(link){ %>
@@ -29,9 +30,7 @@
                     <div class="col edit-trash">
                         <div class="row edit-trash text-end">
                             <div class="col edit-trash">
-                                <form action="/edit" method="post">
-                                    <button type="submit" name="edit" value="" class="btn icon"><i class="fas fa-pencil-alt"></i></button>
-                                </form>
+
                             </div>
                             <div class="col edit-trash">
                                 <form action="/delete" method="post">
@@ -40,10 +39,20 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
         </a>
+
+
+        <form action="/edit" method="post" id="edit_form">
+            <input type="text" name="newLinkName" value="<%=link.name%>" placeholder="update name" autocomplete="off" id="edit">
+            <button type="submit" name="linkID" value="<%=link._id%>" style="display:none;">+</button>
+        </form>
+        <button type="submit" name="edit" value="" class="btn" ><i class="fas fa-pencil-alt"></i></button>
+        <p id='demo'></p>
+
         <%}) %>
+
+
        
 
 
@@ -71,10 +80,10 @@
         <form class="link-box-add" action="/" method="post">
             <div class="row">
                 <div class="col">
-                <input type="text" name="newLinkName" placeholder="link name" autocomplete="off">
+                <input type="text" name="linkName" placeholder="link name" autocomplete="off">
                 </div>
                 <div class="col">
-                <input type="text" name="newUrl" placeholder="url" autocomplete="off">
+                <input type="text" name="url" placeholder="url" autocomplete="off">
                 </div>
                 <div class="col">
                 <button type="submit" name="button" class="add-btn">+</button>
@@ -84,6 +93,8 @@
 
 
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
 </body>
 </html>

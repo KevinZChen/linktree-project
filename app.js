@@ -28,7 +28,6 @@ const Link = mongoose.model("Link",linksSchema);
 app.get("/", function(req, res){
   Link.find({},function(err, foundLinks){
     console.log(foundLinks)
-
     res.render("link",{newLinkUrl:foundLinks})
     });
   });
@@ -61,14 +60,12 @@ app.post("/edit",function(req,res){
   let newLinkName= req.body.newLinkName
   let newLinkUrl=req.body.newLinkUrl
   let linkID=req.body.linkID
-  console.log(req.body.linkID)
-
   //update name
   Link.updateOne({_id:linkID},{name:newLinkName},function(err){
     if (err){
       console.log(err)
     }else{
-      console.log("succesfully updated the document")
+      console.log("succesfully updated the name")
     }
   });
   // update url
@@ -76,11 +73,13 @@ app.post("/edit",function(req,res){
     if (err){
       console.log(err)
     }else{
-      console.log("succesfully updated the document")
+      console.log("succesfully updated the url")
     }
   });
+
   res.redirect("/")
 });
+
 
 app.listen(3000, function(){
   console.log("Server started on port 3000.");
